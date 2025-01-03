@@ -56,6 +56,22 @@ router.post("/getroombyid", async (req, res) => {
   }
 });
 
+router.post("/addroom", async (req, res) => {
+  try {
+    // Validate and sanitize input if necessary
+    const { name, capacity, price } = req.body;
+    if (!name || !capacity || !price) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    const newRoom = new Room({ name, capacity, price });
+    await newRoom.save();
+    res.status(201).json({ message: "New room added successfully", room: newRoom });
+  } catch (error) {
+    console.error("Error adding room:", error);
+    res.status(500).json({ message: "Failed to add new room", error: error.message });
+  }
+});
 module.exports = router;
 
 

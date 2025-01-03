@@ -10,6 +10,7 @@ import Registerscreen from './screens/Registerscreen'
 import Loginscreen from './screens/Loginscreen'
 import Profilescreen from './screens/Profilescreen'
 import Adminscreen from './screens/Adminscreen'
+import Landingscreen from './screens/Landingscreen'
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/login"  element={<Loginscreen/>}/>
           <Route path="/profile"  element={<Profilescreen/>}/>
           <Route path="/admin"  element={<Adminscreen/>}/>
+          <Route path="/"  element={<Landingscreen/>}/>
           {/* <Route path='/home' exact Component={HomeScreen}/> */}
         </Routes>
       </BrowserRouter>

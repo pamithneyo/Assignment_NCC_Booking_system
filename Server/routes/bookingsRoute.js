@@ -69,4 +69,65 @@ router.post("/bookroom", async (req, res) => {
   }
 });
 
+router.post("/getallbookings",async(req,res)=>{
+  try {
+    const bookings = await Booking.find()
+    res.send(bookings)
+  } catch (error) {
+    return res.status(400).json({error})
+  }
+
+});
+
+
+
+router.post("/getbookingsbyuserid",async(req,res)=>{
+  const userid = req.body.userid
+  try {
+    const bookings = await Booking.find({userid : userid})
+    res.send(bookings)
+  } catch (error) {
+    return res.status(400).json({error})
+  }
+
+});
+
+router.post("/cancelbooking", async (req, res) => {
+  const { bookingid, roomid } = req.body;
+
+  try {
+    // Find the booking by ID
+    const booking = await Booking.findOne({ _id: bookingid });
+    if (!booking) {
+      return res.status(404).send("Booking not found");
+    }
+    
+    // Update the status of the booking
+    booking.status = "cancelled";
+    await booking.save();
+
+    // Find the room by ID
+    const room = await Room.findOne({ _id: roomid });
+    if (!room) {
+      return res.status(404).send("Room not found");
+    }
+
+    // Filter out the canceled booking from current bookings
+    const updatedBookings = room.currentbookings.filter(
+      (booking) => booking.bookingid.toString() !== bookingid
+    );
+
+    room.currentbookings = updatedBookings;
+
+    // Save the updated room information
+    await room.save();
+
+    // Send a success response
+    res.send("Your booking has been cancelled successfully");
+  } catch (error) {
+    // Handle errors
+    return res.status(400).json({ error });
+  }
+});
+
 module.exports = router;
