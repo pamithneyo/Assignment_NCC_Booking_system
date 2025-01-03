@@ -58,13 +58,15 @@ router.post("/getroombyid", async (req, res) => {
 
 router.post("/addroom", async (req, res) => {
   try {
+    console.log("add room called");
+    
     // Validate and sanitize input if necessary
-    const { name, capacity, price } = req.body;
-    if (!name || !capacity || !price) {
+    const { name, maxcount,rentperday,type,phonenumber,description,imageurls } = req.body;
+    if (!name || !maxcount || !rentperday) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    const newRoom = new Room({ name, capacity, price });
+    const newRoom = new Room({ name, maxcount,rentperday,type,phonenumber,description,imageurls });
     await newRoom.save();
     res.status(201).json({ message: "New room added successfully", room: newRoom });
   } catch (error) {

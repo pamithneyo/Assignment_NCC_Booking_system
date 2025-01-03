@@ -17,7 +17,7 @@ function Registerscreen() {
       setError(''); // Clear any previous error
       const user = { name, email, password };
       try {
-        const response = await axios.post('http://localhost:5000/api/users/register', user);
+        const response = await axios.post('/api/users/register', user);
         setSuccess(true);
         setName('');
         setEmail('');

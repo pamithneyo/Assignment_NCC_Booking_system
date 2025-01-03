@@ -12,7 +12,7 @@ function Bookings() {
     const fetchBookings = async (page = 1) => {
         try {
             setLoading(true);
-            const { data } = await axios.post(`http://localhost:5000/api/bookings/getallbookings`, { page });
+            const { data } = await axios.post(`/api/bookings/getallbookings`, { page });
             console.log(data);
             
             setBookings(data);

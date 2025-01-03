@@ -14,7 +14,7 @@ function Loginscreen() {
     };
 
     try {
-      const result = await axios.post('http://localhost:5000/api/users/login', user);
+      const result = await axios.post('/api/users/login', user);
       console.log(result.data); // Corrected log statement
       localStorage.setItem('currentUser', JSON.stringify(result.data)); // Store only the response data
       window.location.href = '/home';

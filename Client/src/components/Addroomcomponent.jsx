@@ -8,8 +8,8 @@ function AddRoom() {
     const handleSubmit = async (values) => {
 
         try {
-            console.log("callled form");
-            await axios.post('http://localhost:5000/api/rooms/addroom', values);
+     
+            await axios.post('/api/rooms/addroom', values);
             notification.success({ message: 'Room added successfully!' });
             form.resetFields();
         } catch (error) {
@@ -33,6 +33,9 @@ function AddRoom() {
                 <Form.Item name="phonenumber" label="Phone Number" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
+                <Form.Item name="type" label="Type" rules={[{ required: true }]}>
+                    <Input />
+                </Form.Item>
                 <Form.Item name="description" label="Description">
                     <Input.TextArea />
                 </Form.Item>
@@ -48,3 +51,5 @@ function AddRoom() {
 }
 
 export default AddRoom;
+
+

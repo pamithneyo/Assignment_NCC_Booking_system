@@ -11,7 +11,7 @@ function Users() {
         const fetchUsers = async () => {
             try {
                 setLoading(true);
-                const { data } = await axios.get('http://localhost:5000/api/users/getallusers');
+                const { data } = await axios.get('/api/users/getallusers');
                 setUsers(data);
             } catch (err) {
                 setError(err);

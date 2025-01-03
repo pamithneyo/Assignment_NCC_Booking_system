@@ -39,7 +39,7 @@ function Bookingscreen() {
         setLoading(true);
         console.log("Fetching room data for ID:", roomid);
         const response = await axios.post(
-          "http://localhost:5000/api/rooms/getroombyid",
+          "/api/rooms/getroombyid",
           { roomid }
         );
         console.log("API Response:", response.data);
@@ -71,7 +71,7 @@ function Bookingscreen() {
 
     try {
       const result = await axios.post(
-        "http://localhost:5000/api/bookings/bookroom",
+        "/api/bookings/bookroom",
         bookingDetails,
       );
       console.log("Booking successful:", result.data);

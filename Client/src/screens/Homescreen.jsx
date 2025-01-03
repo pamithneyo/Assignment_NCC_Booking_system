@@ -21,7 +21,7 @@ function HomeScreen() {
       try {
         setLoading(true); // Start loading
         setError(false); // Reset error before fetching
-        const response = await fetch('http://localhost:5000/api/rooms/getallrooms');
+        const response = await fetch('/api/rooms/getallrooms');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

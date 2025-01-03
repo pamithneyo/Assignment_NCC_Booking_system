@@ -11,7 +11,7 @@ function Rooms() {
         const fetchRooms = async () => {
             try {
                 setLoading(true);
-                const { data } = await axios.get('http://localhost:5000/api/rooms/getallrooms');
+                const { data } = await axios.get('/api/rooms/getallrooms');
                 setRooms(data.rooms);
             } catch (err) {
                 setError(err);

@@ -51,7 +51,7 @@ export function MyBookings() {
             }
 
             try {
-                const response = await axios.post('http://localhost:5000/api/bookings/getbookingsbyuserid', {
+                const response = await axios.post('/api/bookings/getbookingsbyuserid', {
                     userid: user._id,
                 });
                 setBookings(response.data);
@@ -67,7 +67,7 @@ export function MyBookings() {
 
     async function cancelBooking(bookingid, roomid) {
         try {
-            await axios.post("http://localhost:5000/api/bookings/cancelbooking", { bookingid, roomid });
+            await axios.post("/api/bookings/cancelbooking", { bookingid, roomid });
             Swal.fire('Success', 'Your booking has been cancelled.', 'success').then(() => {
                 window.location.reload();
             });
